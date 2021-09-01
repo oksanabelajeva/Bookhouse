@@ -1,33 +1,33 @@
-1.	Values
+1. Values - DONE
 String bookTitle;
 String authorName;
 String authorSurname;
 int ISBN; // International Standard Book Number
 int numberOfPages;
 int readersBookScore; // from 1 to 5; 0 - ja vēl nav lasījis grāmatu, ar iespēju mainīt pēc lasīšanas
-??? int or Date yearBookWasPublished;
-??? String or Enum genre; // vai arī būs atsevišķas klases, kuras extends Book. Un tad kādai klasei ielikt vecuma iebobežojumu, atkārībā no žanra.
+int yearBookWasPublished;
+String genre; (if vai switch) // vai arī būs atsevišķas klases, kuras extends Book. Un tad kādai klasei ielikt vecuma iebobežojumu, atkārībā no žanra.
 
-
-2.	Methods
-addBook(); // ja šāda grāmata jau ir datu bāzē, tad sistēma pajautās, vai tiešām vēlies ievadīt šādu grāmatu: YES/ NO, un pēc YES nospiešanas saglabās.
-checkIfBookIsInDatabase();
-deleteBook();
+2. Methods
+DBConnection void addBook(); // ja šāda grāmata jau ir datu bāzē, tad sistēma pajautās, vai tiešām vēlies ievadīt šādu grāmatu: YES/ NO, un pēc YES nospiešanas saglabās.
+??? checkIfBookIsInDatabase();
+DBConnection void deleteBook();
 addReadersRating(); // lasītājs izlasija – uzlika atzīmi
 calculateRating();
 recommendToReadAgainIfRatingMoreThanThree();
-findBookByName(); // +sout all information about book or sout “There is no book with this name.”
-findBookByGenre(); // +sout all information about all books or sout “There is no book with this genre.”
-findBookByAuthor();
-findBookByRating();
-markIfBookIsRead(); // YES/NO
-calculateHowManyBooksAreRead();
-calculateHowManyBookOfOneGenreAreInLibrary(); // vai katram žanram ir nepieciešama sava metode? Man liekas, ka var rēķināt ar vienu.
-calculateHowManyBookOfOneGenreAreRead();
+Book return findBookByName(); // +sout all information about book or sout “There is no book with this name.”
+Book return findBookByGenre(); // +sout all information about all books or sout “There is no book with this genre.”
+Book return findBookByAuthor();
+Book return findBookByRating();
+Book return findOldestBook();
+void markIfBookIsRead(); // YES/NO
+Book return calculateHowManyBooksAreRead();
+Book return calculateHowManyBookOfOneGenreAreInLibrary(); // vai katram žanram ir nepieciešama sava metode? Man liekas, ka var rēķināt ar vienu.
+Book return calculateHowManyBookOfOneGenreAreRead();
 
 ??? recommendAnotherBookAccordingToReadersBookRating(); // rekomendācijas, ko lasīt no tā paša žanra, balstoties uz to, kāda grāmata iepatikās.
 
-3.	Menu
+3.	Menu - DONE
 Choose what to do:
 1 – add book;
 2 – print information about all books;

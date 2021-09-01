@@ -2,28 +2,27 @@ package project_classes;
 
 public class Book {
 
-    public String bookTitle;
-    public String authorName;
-    public String authorSurname;
-    public int isbn;
-    public int numberOfPages;
-    public int readersBookScore;
-
-    //Non argument constructor
+    private String bookTitle;
+    private String authorName;
+    private String authorSurname;
+    private int isbn;
+    private int numberOfPages;
+    private int readersBookScore;
+    private int yearBookWasPublished;
+    private String genre;
 
     public Book() {
     }
 
-    // Argument constructor
-
-
-    public Book(String bookTitle, String authorName, String authorSurname, int isbn, int numberOfPages, int readersBookScore) {
+    public Book(String bookTitle, String authorName, String authorSurname, int isbn, int numberOfPages, int readersBookScore, int yearBookWasPublished, String genre) {
         this.bookTitle = bookTitle;
         this.authorName = authorName;
         this.authorSurname = authorSurname;
         this.isbn = isbn;
         this.numberOfPages = numberOfPages;
         this.readersBookScore = readersBookScore;
+        this.yearBookWasPublished = yearBookWasPublished;
+        this.genre = genre;
     }
 
     public String getBookTitle() {
@@ -74,4 +73,33 @@ public class Book {
         this.readersBookScore = readersBookScore;
     }
 
+    public int getYearBookWasPublished() {
+        return yearBookWasPublished;
+    }
+
+    public void setYearBookWasPublished(int yearBookWasPublished) {
+        this.yearBookWasPublished = yearBookWasPublished;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "bookTitle='" + bookTitle + '\'' +
+                ", authorName='" + authorName + '\'' +
+                ", authorSurname='" + authorSurname + '\'' +
+                ", isbn=" + isbn +
+                ", numberOfPages=" + numberOfPages +
+                ", readersBookScore=" + readersBookScore +
+                ", yearBookWasPublished=" + yearBookWasPublished +
+                ", genre='" + genre + '\'' +
+                '}';
+    }
 }
