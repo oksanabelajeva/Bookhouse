@@ -10,11 +10,12 @@ public class Book {
     private int readersBookScore;
     private int yearBookWasPublished;
     private String genre;
+    private boolean isRead;
 
     public Book() {
     }
 
-    public Book(String bookTitle, String authorName, String authorSurname, int isbn, int numberOfPages, int readersBookScore, int yearBookWasPublished, String genre) {
+    public Book(String bookTitle, String authorName, String authorSurname, int isbn, int numberOfPages, int readersBookScore, int yearBookWasPublished, String genre, boolean isRead) {
         this.bookTitle = bookTitle;
         this.authorName = authorName;
         this.authorSurname = authorSurname;
@@ -23,6 +24,7 @@ public class Book {
         this.readersBookScore = readersBookScore;
         this.yearBookWasPublished = yearBookWasPublished;
         this.genre = genre;
+        this.isRead = isRead;
     }
 
     public String getBookTitle() {
@@ -89,6 +91,14 @@ public class Book {
         this.genre = genre;
     }
 
+    public boolean isRead() {
+        return isRead;
+    }
+
+    public void setRead(boolean read) {
+        isRead = read;
+    }
+
     @Override
     public String toString() {
         return "Book{" +
@@ -100,6 +110,7 @@ public class Book {
                 ", readersBookScore=" + readersBookScore +
                 ", yearBookWasPublished=" + yearBookWasPublished +
                 ", genre='" + genre + '\'' +
+                ", isRead=" + isRead +
                 '}';
     }
 }
