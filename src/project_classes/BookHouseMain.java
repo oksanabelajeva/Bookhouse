@@ -41,12 +41,22 @@ public class BookHouseMain {
                         case "A":
                             System.out.println("Enter the name of the book you want to find: ");
                             bookHouse.findBookByName(scanner.next());
+                            System.out.println("");
                             break;
                         case "B":
+                            System.out.println("Enter the name of the author you want to find: ");
+                            bookHouse.findBookByAuthor(scanner.next());
+                            System.out.println("");
                             break;
                         case "C":
+                            System.out.println("Enter the genre of the books you want to find: ");
+                            bookHouse.findBookByGenre(scanner.next());
+                            System.out.println("");
                             break;
                         case "D":
+                            System.out.println("Enter the rating of the books you want to find: ");
+                            bookHouse.findBookByRating(scanner.next());
+                            System.out.println("");
                             break;
                     }
                     break;
