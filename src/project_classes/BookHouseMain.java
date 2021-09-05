@@ -32,6 +32,23 @@ public class BookHouseMain {
                     break;
                 case 3:
                     //Find book by:
+                    System.out.println("To find book by name press A");
+                    System.out.println("To find book by author press B");
+                    System.out.println("To find book by genre press C");
+                    System.out.println("To find book by rating press D");
+                    String findMenuEntry = scanner.next();
+                    switch (findMenuEntry){
+                        case "A":
+                            System.out.println("Enter the name of the book you want to find: ");
+                            bookHouse.findBookByName(scanner.next());
+                            break;
+                        case "B":
+                            break;
+                        case "C":
+                            break;
+                        case "D":
+                            break;
+                    }
                     break;
                 case 4:
                     //Check amount of read books

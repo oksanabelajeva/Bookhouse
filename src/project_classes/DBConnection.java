@@ -80,6 +80,23 @@ public class DBConnection {
         }
     }
 
+
+    public void findBookByName(String bookTitle) {
+        try {
+            Statement statement = connection.createStatement();
+            String sqlStatement = "SELECT book_title, author_name, author_surname " +
+                    "FROM books WHERE book_title = '" + bookTitle + "';";
+            ResultSet res = statement.executeQuery(sqlStatement);
+            while (res.next()){
+                System.out.println(res.getString("book_title") +
+                        " " + res.getString("author_name")+
+                        " " + res.getString("author_surname") + "");
+            }
+        } catch (SQLException exception) {
+            System.out.println("Sorry, no such book in Bookhouse.");
+        }
+    }
+
     public void removeBookByIndex(Integer id) {
         // If index 1 is deleted, there is no more index 1 database
         // How to print out information with indexes?
