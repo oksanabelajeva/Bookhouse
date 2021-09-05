@@ -23,9 +23,20 @@ public class DBConnection {
                             "readers_book_score INTEGER NOT NULL, " +
                             "year_book_was_published INTEGER NOT NULL," +
                             "genre TEXT NOT NULL," +
-                            "is_read TEXT NOT NULL" +
+                            "is_read TEXT NOT NULL " +
+// !!! AFTER THE CODE WILL BE USED, MUST PRINT COMA AFTER NULL!!!
+//                            "owner_id INTEGER NOT NULL, " +
+//                            "FOREIGN KEY (owner_id) REFERENCES owner(id) )";
+//            String sqlStatement2 =
+//                    "CREATE TABLE IF NOT EXISTS owner" +
+//                            " (id INTEGER PRIMARY KEY AUTOINCREMENT," +
+//                            "owner_name TEXT NOT NULL, " +
+//                            "owner_surname TEXT NOT NULL, " +
+//                            "owner_phone TEXT NOT NULL, " +
+//                            "owner_email TEXT NOT NULL " +
                             ")";
             statement.execute(sqlStatement);
+//            statement.execute(sqlStatement2);
             System.out.println("DB created");
         } catch (SQLException exception) {
             System.out.println("Database issues: " + exception);
@@ -71,7 +82,6 @@ public class DBConnection {
                 book.setReadersBookScore(rs.getInt("readers_book_score"));
                 book.setYearBookWasPublished(rs.getInt("year_book_was_published"));
                 book.setGenre(rs.getString("genre"));
-//                book.setRead(rs.getBoolean("is_read"));
                 book.setRead(Boolean.parseBoolean(rs.getString("is_read")));
                 System.out.println(book);
             }
@@ -80,16 +90,15 @@ public class DBConnection {
         }
     }
 
-
     public void findBookByName(String bookTitle) {
         try {
             Statement statement = connection.createStatement();
             String sqlStatement = "SELECT book_title, author_name, author_surname " +
                     "FROM books WHERE book_title = '" + bookTitle + "';";
             ResultSet res = statement.executeQuery(sqlStatement);
-            while (res.next()){
+            while (res.next()) {
                 System.out.println(res.getString("book_title") +
-                        " " + res.getString("author_name")+
+                        " " + res.getString("author_name") +
                         " " + res.getString("author_surname") + "");
             }
         } catch (SQLException exception) {
@@ -103,9 +112,9 @@ public class DBConnection {
             String sqlStatement = "SELECT book_title, author_name, author_surname " +
                     "FROM books WHERE author_name = '" + authorName + "';";
             ResultSet res = statement.executeQuery(sqlStatement);
-            while (res.next()){
+            while (res.next()) {
                 System.out.println(res.getString("book_title") +
-                        " " + res.getString("author_name")+
+                        " " + res.getString("author_name") +
                         " " + res.getString("author_surname") + "");
             }
         } catch (SQLException exception) {
@@ -119,11 +128,11 @@ public class DBConnection {
             String sqlStatement = "SELECT book_title, author_name, author_surname, genre " +
                     "FROM books WHERE genre = '" + genre + "';";
             ResultSet res = statement.executeQuery(sqlStatement);
-            while (res.next()){
+            while (res.next()) {
                 System.out.println(res.getString("book_title") +
-                        " " + res.getString("author_name")+
-                        " " + res.getString("author_surname")+
-                        " " + res.getString("genre")+ "");
+                        " " + res.getString("author_name") +
+                        " " + res.getString("author_surname") +
+                        " " + res.getString("genre") + "");
             }
         } catch (SQLException exception) {
             System.out.println("Sorry, no such book in Bookhouse.");
@@ -136,18 +145,17 @@ public class DBConnection {
             String sqlStatement = "SELECT book_title, author_name, author_surname, genre, readers_book_score " +
                     "FROM books WHERE readers_book_score = '" + readersBookScore + "';";
             ResultSet res = statement.executeQuery(sqlStatement);
-            while (res.next()){
+            while (res.next()) {
                 System.out.println(res.getString("book_title") +
-                        " " + res.getString("author_name")+
-                        " " + res.getString("author_surname")+
-                        " " + res.getString("genre")+
-                        " " + res.getInt("readers_book_score")+ "");
+                        " " + res.getString("author_name") +
+                        " " + res.getString("author_surname") +
+                        " " + res.getString("genre") +
+                        " " + res.getInt("readers_book_score") + "");
             }
         } catch (SQLException exception) {
             System.out.println("Sorry, no such book in Bookhouse.");
         }
     }
-
 
     public void removeBookByIndex(Integer id) {
         // If index 1 is deleted, there is no more index 1 database
@@ -160,8 +168,6 @@ public class DBConnection {
             System.out.println("Wrong ID! This book does not exist.");
         }
     }
-
-
 
 //    public void getBooksReadCounter(Book book) {
 //        try {

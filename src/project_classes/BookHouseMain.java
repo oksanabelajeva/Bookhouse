@@ -31,34 +31,7 @@ public class BookHouseMain {
                     bookHouse.getBooks(newBook);
                     break;
                 case 3:
-                    //Find book by:
-                    System.out.println("To find book by name press A");
-                    System.out.println("To find book by author press B");
-                    System.out.println("To find book by genre press C");
-                    System.out.println("To find book by rating press D");
-                    String findMenuEntry = scanner.next();
-                    switch (findMenuEntry){
-                        case "A":
-                            System.out.println("Enter the name of the book you want to find: ");
-                            bookHouse.findBookByName(scanner.next());
-                            System.out.println("");
-                            break;
-                        case "B":
-                            System.out.println("Enter the name of the author you want to find: ");
-                            bookHouse.findBookByAuthor(scanner.next());
-                            System.out.println("");
-                            break;
-                        case "C":
-                            System.out.println("Enter the genre of the books you want to find: ");
-                            bookHouse.findBookByGenre(scanner.next());
-                            System.out.println("");
-                            break;
-                        case "D":
-                            System.out.println("Enter the rating of the books you want to find: ");
-                            bookHouse.findBookByRating(scanner.next());
-                            System.out.println("");
-                            break;
-                    }
+                    findBookByOneOfParameters();
                     break;
                 case 4:
                     //Check amount of read books
@@ -75,5 +48,31 @@ public class BookHouseMain {
                     System.out.println("Menu item does not exist.");
             }
         } while (menuEntry != 0);
+    }
+
+    private static void findBookByOneOfParameters() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("To find book by name press A");
+        System.out.println("To find book by author press B");
+        System.out.println("To find book by genre press C");
+        System.out.println("To find book by rating press D");
+        switch (scanner.next()) {
+            case "A":
+                System.out.println("Enter the name of the book you want to find: ");
+                bookHouse.findBookByName(scanner.next());
+                break;
+            case "B":
+                System.out.println("Enter the name of the author you want to find: ");
+                bookHouse.findBookByAuthor(scanner.next());
+                break;
+            case "C":
+                System.out.println("Enter the genre of the books you want to find: ");
+                bookHouse.findBookByGenre(scanner.next());
+                break;
+            case "D":
+                System.out.println("Enter the rating of the books you want to find: ");
+                bookHouse.findBookByRating(scanner.next());
+                break;
+        }
     }
 }

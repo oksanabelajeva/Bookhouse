@@ -38,9 +38,4 @@ public class BookMethods {
         }
         return true;
     }
-
-    public static void insertIndexOfBookToBeDeleted() {
-        System.out.println("Enter ID of book you want to delete: ");
-        newBook.setIsbn(scanner.nextInt());
-    }
 }
