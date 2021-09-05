@@ -97,6 +97,58 @@ public class DBConnection {
         }
     }
 
+    public void findBookByAuthor(String authorName) {
+        try {
+            Statement statement = connection.createStatement();
+            String sqlStatement = "SELECT book_title, author_name, author_surname " +
+                    "FROM books WHERE author_name = '" + authorName + "';";
+            ResultSet res = statement.executeQuery(sqlStatement);
+            while (res.next()){
+                System.out.println(res.getString("book_title") +
+                        " " + res.getString("author_name")+
+                        " " + res.getString("author_surname") + "");
+            }
+        } catch (SQLException exception) {
+            System.out.println("Sorry, no such book in Bookhouse.");
+        }
+    }
+
+    public void findBookByGenre(String genre) {
+        try {
+            Statement statement = connection.createStatement();
+            String sqlStatement = "SELECT book_title, author_name, author_surname, genre " +
+                    "FROM books WHERE genre = '" + genre + "';";
+            ResultSet res = statement.executeQuery(sqlStatement);
+            while (res.next()){
+                System.out.println(res.getString("book_title") +
+                        " " + res.getString("author_name")+
+                        " " + res.getString("author_surname")+
+                        " " + res.getString("genre")+ "");
+            }
+        } catch (SQLException exception) {
+            System.out.println("Sorry, no such book in Bookhouse.");
+        }
+    }
+
+    public void findBookByRating(String readersBookScore) {
+        try {
+            Statement statement = connection.createStatement();
+            String sqlStatement = "SELECT book_title, author_name, author_surname, genre, readers_book_score " +
+                    "FROM books WHERE readers_book_score = '" + readersBookScore + "';";
+            ResultSet res = statement.executeQuery(sqlStatement);
+            while (res.next()){
+                System.out.println(res.getString("book_title") +
+                        " " + res.getString("author_name")+
+                        " " + res.getString("author_surname")+
+                        " " + res.getString("genre")+
+                        " " + res.getInt("readers_book_score")+ "");
+            }
+        } catch (SQLException exception) {
+            System.out.println("Sorry, no such book in Bookhouse.");
+        }
+    }
+
+
     public void removeBookByIndex(Integer id) {
         // If index 1 is deleted, there is no more index 1 database
         // How to print out information with indexes?
@@ -108,6 +160,8 @@ public class DBConnection {
             System.out.println("Wrong ID! This book does not exist.");
         }
     }
+
+
 
 //    public void getBooksReadCounter(Book book) {
 //        try {
