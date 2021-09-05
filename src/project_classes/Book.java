@@ -101,6 +101,7 @@ public class Book {
 
     @Override
     public String toString() {
+        String isReadToString = Boolean.toString(isRead);
         return "Book{" +
                 "bookTitle='" + bookTitle + '\'' +
                 ", authorName='" + authorName + '\'' +
@@ -110,7 +111,7 @@ public class Book {
                 ", readersBookScore=" + readersBookScore +
                 ", yearBookWasPublished=" + yearBookWasPublished +
                 ", genre='" + genre + '\'' +
-                ", isRead=" + isRead +
+                ", isRead=" + isReadToString +
                 '}';
     }
 }

@@ -23,22 +23,20 @@ public class BookMethods {
         newBook.setYearBookWasPublished(scanner.nextInt());
         System.out.println("Enter genre: ");
         newBook.setGenre(scanner.next());
-        System.out.println("Did you read the book (true/ false): ");
-        newBook.setRead(booleanScanner());
+        System.out.println("Did you read the book (yes/ no): ");
+        booleanScanner();
         return newBook;
     }
 
     private static boolean booleanScanner() {
-        scanner.next();
-        if (scanner.equals("yes")) {
+        if (scanner.next().equals("yes")) {
             System.out.println("YES");
-            return true;
-        } else if (scanner.equals("no")) {
-            System.out.println("NO");
-            return false;
+            newBook.setRead(true);
         } else {
-            return false;
+            System.out.println("NO");
+            newBook.setRead(false);
         }
+        return true;
     }
 
     public static void insertIndexOfBookToBeDeleted() {

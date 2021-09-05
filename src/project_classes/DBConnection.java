@@ -71,7 +71,8 @@ public class DBConnection {
                 book.setReadersBookScore(rs.getInt("readers_book_score"));
                 book.setYearBookWasPublished(rs.getInt("year_book_was_published"));
                 book.setGenre(rs.getString("genre"));
-                book.setRead(rs.getBoolean("is_read"));
+//                book.setRead(rs.getBoolean("is_read"));
+                book.setRead(Boolean.parseBoolean(rs.getString("is_read")));
                 System.out.println(book);
             }
         } catch (SQLException exception) {
@@ -79,10 +80,10 @@ public class DBConnection {
         }
     }
 
-      public void removeBookByIndex(Integer id) {
+    public void removeBookByIndex(Integer id) {
         // If index 1 is deleted, there is no more index 1 database
         // How to print out information with indexes?
-          try {
+        try {
             Statement statement = connection.createStatement();
             String sqlStatement = "DELETE FROM books WHERE id = '" + id + "';";
             statement.execute(sqlStatement);
