@@ -17,7 +17,7 @@ public class BookHouseMain {
             System.out.println("0 - Login");
             System.out.println("1 - Add a new book");
             System.out.println("2 - See information about all Your books");
-            System.out.println("3 - Find book by: Name (type A), Author (type B), genre (type C), Rating (type D)");
+            System.out.println("3 - Find book by: Name (type A), Author (type B), Genre (type C), Rating (type D)");
             System.out.println("4 - Check how many books have been read");
             System.out.println("5 - Delete book entry from Your library");
             System.out.println("99 - Exit");
@@ -39,8 +39,7 @@ public class BookHouseMain {
                     findBookByOneOfParameters();
                     break;
                 case 4:
-                    //Check amount of read books
-
+                    bookHouse.getBooksReadCounter(newBook);
                     break;
                 case 5:
                     System.out.println("Enter ID of book you want to delete: ");
@@ -58,14 +57,14 @@ public class BookHouseMain {
 
     private static void findBookByOneOfParameters() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("To find book by name press A");
+        System.out.println("To find book by title press A");
         System.out.println("To find book by author press B");
         System.out.println("To find book by genre press C");
         System.out.println("To find book by rating press D");
         switch (scanner.next()) {
             case "A":
-                System.out.println("Enter the name of the book you want to find: ");
-                bookHouse.findBookByName(scanner.next());
+                System.out.println("Enter the title of the book you want to find: ");
+                bookHouse.findBookByTitle(scanner.next());
                 break;
             case "B":
                 System.out.println("Enter the name of the author you want to find: ");

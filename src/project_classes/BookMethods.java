@@ -18,6 +18,7 @@ public class BookMethods {
         System.out.println("Enter number of pages: ");
         enterNumberOfPages();
         System.out.println("Enter rating (from 1 to 5; zero if not read): ");
+//        checkEnteredReadersBookScore();
         enterReadersBookScore();
         System.out.println("Enter year the book was published: ");
         enterYearBookWasPublished();
@@ -34,7 +35,6 @@ public class BookMethods {
         } else {
             System.out.println("You entered incorrect value. It will be saved zero.\nAfter information is saved, choose to change information about book.");
             scanner.nextLine();
-
         }
     }
 
@@ -56,6 +56,21 @@ public class BookMethods {
         }
     }
 
+//    private static void checkEnteredReadersBookScore() {
+//        if (scanner.hasNextInt()) {
+//            int enteredReadersScore = scanner.nextInt();
+//            while (enteredReadersScore < 0 || enteredReadersScore > 5) {
+//                System.out.println("Please, enter score from 0 to 5.");
+//                enteredReadersScore = scanner.nextInt();
+//                break;
+//            }
+//            newBook.setReadersBookScore(scanner.nextInt());
+//        } else {
+//            System.out.println("You entered incorrect value. It will be saved zero.\nAfter information is saved, choose to change information about book.");
+//            scanner.nextLine();
+//        }
+//    }
+
     private static void enterYearBookWasPublished() {
         if (scanner.hasNextInt()) {
             newBook.setYearBookWasPublished(scanner.nextInt());
@@ -66,7 +81,7 @@ public class BookMethods {
     }
 
     private static boolean booleanScanner() {
-        if (scanner.next().equals("yes")) {
+        if (scanner.nextLine().equals("yes")) {
             newBook.setRead(true);
         } else {
             newBook.setRead(false);

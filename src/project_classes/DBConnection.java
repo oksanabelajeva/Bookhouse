@@ -93,19 +93,19 @@ public class DBConnection {
         }
     }
 
-    public void findBookByName(String bookTitle) {
+    public void findBookByTitle(String bookTitle) {
         try {
             Statement statement = connection.createStatement();
             String sqlStatement = "SELECT book_title, author_name, author_surname " +
                     "FROM books WHERE book_title = '" + bookTitle + "';";
             ResultSet res = statement.executeQuery(sqlStatement);
             while (res.next()) {
-                System.out.println(res.getString("book_title") +
-                        " " + res.getString("author_name") +
-                        " " + res.getString("author_surname") + "");
+                System.out.println("The book was found.\nTitle: " + res.getString("book_title") +
+                        ", author name: " + res.getString("author_name") +
+                        ", author surname: " + res.getString("author_surname") + "\n");
             }
         } catch (SQLException exception) {
-            System.out.println("Sorry, no such book in BookHouse.");
+            System.out.println("Sorry, no such book in BookHouse.\n");
         }
     }
 
@@ -116,12 +116,12 @@ public class DBConnection {
                     "FROM books WHERE author_name = '" + authorName + "';";
             ResultSet res = statement.executeQuery(sqlStatement);
             while (res.next()) {
-                System.out.println(res.getString("book_title") +
-                        " " + res.getString("author_name") +
-                        " " + res.getString("author_surname") + "");
+                System.out.println("The book was found.\nTitle: " + res.getString("book_title") +
+                        ", author name: " + res.getString("author_name") +
+                        ", author surname: " + res.getString("author_surname") + "\n");
             }
         } catch (SQLException exception) {
-            System.out.println("Sorry, no such book in Bookhouse.");
+            System.out.println("Sorry, no such book in BookHouse.\n");
         }
     }
 
@@ -129,16 +129,16 @@ public class DBConnection {
         try {
             Statement statement = connection.createStatement();
             String sqlStatement = "SELECT book_title, author_name, author_surname, genre " +
-                    "FROM books WHERE genre = '" + genre + "';";
+                    "FROM books WHERE genre LIKE '%" + genre + "%';";
             ResultSet res = statement.executeQuery(sqlStatement);
             while (res.next()) {
-                System.out.println(res.getString("book_title") +
-                        " " + res.getString("author_name") +
-                        " " + res.getString("author_surname") +
-                        " " + res.getString("genre") + "");
+                System.out.println("The book was found.\nTitle: " + res.getString("book_title") +
+                        ", author name: " + res.getString("author_name") +
+                        ", author surname: " + res.getString("author_surname") +
+                        ", genre: " + res.getString("genre") + "\n");
             }
         } catch (SQLException exception) {
-            System.out.println("Sorry, no such book in BookHouse.");
+            System.out.println("Sorry, no such book in BookHouse.\n");
         }
     }
 
@@ -149,14 +149,14 @@ public class DBConnection {
                     "FROM books WHERE readers_book_score = '" + readersBookScore + "';";
             ResultSet res = statement.executeQuery(sqlStatement);
             while (res.next()) {
-                System.out.println(res.getString("book_title") +
-                        " " + res.getString("author_name") +
-                        " " + res.getString("author_surname") +
-                        " " + res.getString("genre") +
-                        " " + res.getInt("readers_book_score") + "");
+                System.out.println("The book was found.\nTitle: " + res.getString("book_title") +
+                        ", author name: " + res.getString("author_name") +
+                        ", author surname: " + res.getString("author_surname") +
+                        ", genre: " + res.getString("genre") +
+                        ", reader's book score: " + res.getInt("readers_book_score") + "\n");
             }
         } catch (SQLException exception) {
-            System.out.println("Sorry, no such book in BookHouse.");
+            System.out.println("Sorry, no such book in BookHouse.\n");
         }
     }
 
@@ -170,18 +170,20 @@ public class DBConnection {
         }
     }
 
-//    public void getBooksReadCounter(Book book) {
-//        try {
-//            Statement statement = connection.createStatement();
-//            String sqlStatement = "SELECT COUNT (*) as booksReadCounter FROM books WHERE (isRead == true)";
-//            ResultSet rs = statement.executeQuery(sqlStatement);
-//            int booksReadCounter = 0;
-//            while (rs.next()) {
-//                System.out.println("You have already read " + booksReadCounter + " books!");
-//            }
-//        } catch (SQLException exception) {
-//            System.out.println("Error getting list of books: " + exception);
-//        }
-//    }
-
+    public void getBooksReadCounter(Book book) {
+        try {
+            int booksReadCounter = 0;
+            Statement statement = connection.createStatement();
+//            String sqlStatement = "SELECT COUNT (*) as booksReadCounter FROM books WHERE (is_read == true);";
+//            String sqlStatement = "SELECT COUNT (*) as booksReadCounter FROM books WHERE is_read = true;";
+            String sqlStatement = "SELECT COUNT([is_read]) AS booksReadCounter FROM books WHERE is_read = 'true';";
+            ResultSet rs = statement.executeQuery(sqlStatement);
+            while (rs.next()) {
+                booksReadCounter++;
+            }
+            System.out.println("You have already read " + booksReadCounter + " books!");
+        } catch (SQLException exception) {
+            System.out.println("Error getting list of books: " + exception);
+        }
+    }
 }
