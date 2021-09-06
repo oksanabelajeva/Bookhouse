@@ -72,8 +72,10 @@ public class DBConnection {
             Statement statement = connection.createStatement();
             String sqlStatement = "SELECT * FROM books";
             ResultSet rs = statement.executeQuery(sqlStatement);
-
+            System.out.println();
+            System.out.println("Please see the full list of books:");
             while (rs.next()) {
+                book.setId(rs.getInt("id"));
                 book.setBookTitle(rs.getString("book_title"));
                 book.setAuthorName(rs.getString("author_name"));
                 book.setAuthorSurname(rs.getString("author_surname"));
@@ -85,6 +87,7 @@ public class DBConnection {
                 book.setRead(Boolean.parseBoolean(rs.getString("is_read")));
                 System.out.println(book);
             }
+            System.out.println("That's all.\n");
         } catch (SQLException exception) {
             System.out.println("Error getting list of books: " + exception);
         }
@@ -102,7 +105,7 @@ public class DBConnection {
                         " " + res.getString("author_surname") + "");
             }
         } catch (SQLException exception) {
-            System.out.println("Sorry, no such book in Bookhouse.");
+            System.out.println("Sorry, no such book in BookHouse.");
         }
     }
 
@@ -135,7 +138,7 @@ public class DBConnection {
                         " " + res.getString("genre") + "");
             }
         } catch (SQLException exception) {
-            System.out.println("Sorry, no such book in Bookhouse.");
+            System.out.println("Sorry, no such book in BookHouse.");
         }
     }
 
@@ -153,13 +156,11 @@ public class DBConnection {
                         " " + res.getInt("readers_book_score") + "");
             }
         } catch (SQLException exception) {
-            System.out.println("Sorry, no such book in Bookhouse.");
+            System.out.println("Sorry, no such book in BookHouse.");
         }
     }
 
     public void removeBookByIndex(Integer id) {
-        // If index 1 is deleted, there is no more index 1 database
-        // How to print out information with indexes?
         try {
             Statement statement = connection.createStatement();
             String sqlStatement = "DELETE FROM books WHERE id = '" + id + "';";

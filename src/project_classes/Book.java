@@ -2,6 +2,7 @@ package project_classes;
 
 public class Book {
 
+    private int id;
     private String bookTitle;
     private String authorName;
     private String authorSurname;
@@ -15,7 +16,8 @@ public class Book {
     public Book() {
     }
 
-    public Book(String bookTitle, String authorName, String authorSurname, int isbn, int numberOfPages, int readersBookScore, int yearBookWasPublished, String genre, boolean isRead) {
+    public Book(int id, String bookTitle, String authorName, String authorSurname, int isbn, int numberOfPages, int readersBookScore, int yearBookWasPublished, String genre, boolean isRead) {
+        this.id = id;
         this.bookTitle = bookTitle;
         this.authorName = authorName;
         this.authorSurname = authorSurname;
@@ -25,6 +27,14 @@ public class Book {
         this.yearBookWasPublished = yearBookWasPublished;
         this.genre = genre;
         this.isRead = isRead;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getBookTitle() {
@@ -101,9 +111,9 @@ public class Book {
 
     @Override
     public String toString() {
-        String isReadToString = Boolean.toString(isRead);
         return "Book{" +
-                "bookTitle='" + bookTitle + '\'' +
+                "id=" + id +
+                ", bookTitle='" + bookTitle + '\'' +
                 ", authorName='" + authorName + '\'' +
                 ", authorSurname='" + authorSurname + '\'' +
                 ", isbn=" + isbn +
@@ -111,7 +121,7 @@ public class Book {
                 ", readersBookScore=" + readersBookScore +
                 ", yearBookWasPublished=" + yearBookWasPublished +
                 ", genre='" + genre + '\'' +
-                ", isRead=" + isReadToString +
+                ", isRead=" + isRead +
                 '}';
     }
 }
