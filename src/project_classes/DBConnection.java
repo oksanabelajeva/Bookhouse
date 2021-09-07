@@ -172,16 +172,14 @@ public class DBConnection {
 
     public void getBooksReadCounter(Book book) {
         try {
-            int booksReadCounter = 0;
+            int numberOfReadBook = 0;
             Statement statement = connection.createStatement();
-//            String sqlStatement = "SELECT COUNT (*) as booksReadCounter FROM books WHERE (is_read == true);";
-//            String sqlStatement = "SELECT COUNT (*) as booksReadCounter FROM books WHERE is_read = true;";
-            String sqlStatement = "SELECT COUNT([is_read]) AS booksReadCounter FROM books WHERE is_read = 'true';";
+            String sqlStatement = "SELECT COUNT(*) AS booksReadCounter FROM books WHERE is_read = 'true';";
             ResultSet rs = statement.executeQuery(sqlStatement);
             while (rs.next()) {
-                booksReadCounter++;
+                numberOfReadBook = rs.getInt("booksReadCounter");
             }
-            System.out.println("You have already read " + booksReadCounter + " books!");
+            System.out.println("You have already read " + numberOfReadBook + " books!");
         } catch (SQLException exception) {
             System.out.println("Error getting list of books: " + exception);
         }

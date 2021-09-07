@@ -8,6 +8,7 @@ public class BookHouseMain {
 
     public static void main(String[] args) {
         bookHouse = new DBConnection();
+        currentUser = new Owner();
         int menuEntry;
         Scanner scanner = new Scanner(System.in);
 
@@ -26,6 +27,16 @@ public class BookHouseMain {
 
             switch (menuEntry) {
                 case 0:
+                    System.out.println("Please enter your nickname: ");
+                    String userInputNickname = scanner.nextLine();
+                    if (currentUser.getOwnerNickname().equals(userInputNickname) || currentUser.getOwnerNickname().equals(null) ){
+                        currentUser = currentUser;
+                        System.out.println("Login is successful.");
+                    } else {
+                        System.out.println("Please register.");
+                        currentUser = Owner.insertInformationOwner();
+                        System.out.println("The owner is saved.\n");
+                    }
                     break;
                 case 1:
                     newBook = BookMethods.insertInformationAboutBook();

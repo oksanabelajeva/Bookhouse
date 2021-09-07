@@ -12,11 +12,12 @@ public class Book {
     private int yearBookWasPublished;
     private String genre;
     private boolean isRead;
+    private Owner ownerId;
 
     public Book() {
     }
 
-    public Book(int id, String bookTitle, String authorName, String authorSurname, int isbn, int numberOfPages, int readersBookScore, int yearBookWasPublished, String genre, boolean isRead) {
+    public Book(int id, String bookTitle, String authorName, String authorSurname, int isbn, int numberOfPages, int readersBookScore, int yearBookWasPublished, String genre, boolean isRead, Owner ownerId) {
         this.id = id;
         this.bookTitle = bookTitle;
         this.authorName = authorName;
@@ -27,6 +28,7 @@ public class Book {
         this.yearBookWasPublished = yearBookWasPublished;
         this.genre = genre;
         this.isRead = isRead;
+        this.ownerId = ownerId;
     }
 
     public int getId() {
