@@ -14,14 +14,17 @@ public class BookMethods {
         System.out.println("Enter author surname:  ");
         newBook.setAuthorSurname(scanner.nextLine());
         System.out.println("Enter ISBN: ");
-        enterIsbnValue();
+        newBook.setIsbn(scanner.nextLine());
         System.out.println("Enter number of pages: ");
         enterNumberOfPages();
-        System.out.println("Enter rating (from 1 to 5; zero if not read): ");
-//        checkEnteredReadersBookScore();
-        enterReadersBookScore();
-        System.out.println("Enter year the book was published: ");
+        System.out.println("Enter rating (from 1 to 5; zero if not read;\nType correct score + ENTER twice, please): ");
+        boolean validator = false;
+        while (!validator) {
+            validator = checkEnteredReadersBookScore();
+        }
+        System.out.println("Enter year the book was published (type year + ENTER twice, please.): ");
         enterYearBookWasPublished();
+        scanner.nextLine();
         System.out.println("Enter genre: ");
         newBook.setGenre(scanner.nextLine());
         System.out.println("Did you read the book (yes/ no): ");
@@ -29,51 +32,37 @@ public class BookMethods {
         return newBook;
     }
 
-    private static void enterIsbnValue() {
-        if (scanner.hasNextInt()) {
-            newBook.setIsbn(scanner.nextInt());
-        } else {
-            System.out.println("You entered incorrect value. It will be saved zero.\nAfter information is saved, choose to change information about book.");
-            scanner.nextLine();
-        }
-    }
-
     private static void enterNumberOfPages() {
         if (scanner.hasNextInt()) {
             newBook.setNumberOfPages(scanner.nextInt());
+            scanner.nextLine();
         } else {
             System.out.println("You entered incorrect value. It will be saved zero.\nAfter information is saved, choose to change information about book.");
             scanner.nextLine();
         }
     }
 
-    private static void enterReadersBookScore() {
+    private static boolean checkEnteredReadersBookScore() {
         if (scanner.hasNextInt()) {
+            int enteredReadersScore = scanner.nextInt();
+//            scanner.nextLine();
+            if (enteredReadersScore < 0 || enteredReadersScore > 5) {
+                System.out.println("Please enter score from 1 to 5; zero if book is not read.\nType correct score twice, please.");
+                return false;
+            }
             newBook.setReadersBookScore(scanner.nextInt());
+            return true;
         } else {
-            System.out.println("You entered incorrect value. It will be saved zero.\nAfter information is saved, choose to change information about book.");
+            System.out.println("You entered incorrect value.\nPlease enter score from 1 to 5; zero if book is not read.\nType correct score + ENTER twice, please.");
             scanner.nextLine();
+            return false;
         }
     }
-
-//    private static void checkEnteredReadersBookScore() {
-//        if (scanner.hasNextInt()) {
-//            int enteredReadersScore = scanner.nextInt();
-//            while (enteredReadersScore < 0 || enteredReadersScore > 5) {
-//                System.out.println("Please, enter score from 0 to 5.");
-//                enteredReadersScore = scanner.nextInt();
-//                break;
-//            }
-//            newBook.setReadersBookScore(scanner.nextInt());
-//        } else {
-//            System.out.println("You entered incorrect value. It will be saved zero.\nAfter information is saved, choose to change information about book.");
-//            scanner.nextLine();
-//        }
-//    }
 
     private static void enterYearBookWasPublished() {
         if (scanner.hasNextInt()) {
             newBook.setYearBookWasPublished(scanner.nextInt());
+            scanner.nextLine();
         } else {
             System.out.println("You entered incorrect value. It will be saved zero.\nAfter information is saved, choose to change information about book.");
             scanner.nextLine();

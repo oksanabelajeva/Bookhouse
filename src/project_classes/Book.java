@@ -1,12 +1,14 @@
 package project_classes;
 
+import java.math.BigInteger;
+
 public class Book {
 
     private int id;
     private String bookTitle;
     private String authorName;
     private String authorSurname;
-    private int isbn;
+    private String isbn;
     private int numberOfPages;
     private int readersBookScore;
     private int yearBookWasPublished;
@@ -17,7 +19,7 @@ public class Book {
     public Book() {
     }
 
-    public Book(int id, String bookTitle, String authorName, String authorSurname, int isbn, int numberOfPages, int readersBookScore, int yearBookWasPublished, String genre, boolean isRead, Owner ownerId) {
+    public Book(int id, String bookTitle, String authorName, String authorSurname, String isbn, int numberOfPages, int readersBookScore, int yearBookWasPublished, String genre, boolean isRead, Owner ownerId) {
         this.id = id;
         this.bookTitle = bookTitle;
         this.authorName = authorName;
@@ -63,12 +65,20 @@ public class Book {
         this.authorSurname = authorSurname;
     }
 
-    public int getIsbn() {
+    public String getIsbn() {
         return isbn;
     }
 
-    public void setIsbn(int isbn) {
+    public void setIsbn(String isbn) {
         this.isbn = isbn;
+    }
+
+    public Owner getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(Owner ownerId) {
+        this.ownerId = ownerId;
     }
 
     public int getNumberOfPages() {
@@ -118,12 +128,13 @@ public class Book {
                 ", bookTitle='" + bookTitle + '\'' +
                 ", authorName='" + authorName + '\'' +
                 ", authorSurname='" + authorSurname + '\'' +
-                ", isbn=" + isbn +
+                ", isbn='" + isbn + '\'' +
                 ", numberOfPages=" + numberOfPages +
                 ", readersBookScore=" + readersBookScore +
                 ", yearBookWasPublished=" + yearBookWasPublished +
                 ", genre='" + genre + '\'' +
                 ", isRead=" + isRead +
+                ", ownerId=" + ownerId +
                 '}';
     }
 }
