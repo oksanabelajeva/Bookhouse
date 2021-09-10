@@ -1,7 +1,5 @@
 package project_classes;
 
-import java.math.BigInteger;
-
 public class Book {
 
     private int id;
@@ -14,12 +12,11 @@ public class Book {
     private int yearBookWasPublished;
     private String genre;
     private boolean isRead;
-    private Owner ownerId;
 
     public Book() {
     }
 
-    public Book(int id, String bookTitle, String authorName, String authorSurname, String isbn, int numberOfPages, int readersBookScore, int yearBookWasPublished, String genre, boolean isRead, Owner ownerId) {
+    public Book(int id, String bookTitle, String authorName, String authorSurname, String isbn, int numberOfPages, int readersBookScore, int yearBookWasPublished, String genre, boolean isRead) {
         this.id = id;
         this.bookTitle = bookTitle;
         this.authorName = authorName;
@@ -30,7 +27,6 @@ public class Book {
         this.yearBookWasPublished = yearBookWasPublished;
         this.genre = genre;
         this.isRead = isRead;
-        this.ownerId = ownerId;
     }
 
     public int getId() {
@@ -71,14 +67,6 @@ public class Book {
 
     public void setIsbn(String isbn) {
         this.isbn = isbn;
-    }
-
-    public Owner getOwnerId() {
-        return ownerId;
-    }
-
-    public void setOwnerId(Owner ownerId) {
-        this.ownerId = ownerId;
     }
 
     public int getNumberOfPages() {
@@ -134,7 +122,6 @@ public class Book {
                 ", yearBookWasPublished=" + yearBookWasPublished +
                 ", genre='" + genre + '\'' +
                 ", isRead=" + isRead +
-                ", ownerId=" + ownerId +
                 '}';
     }
 }

@@ -17,14 +17,16 @@ public class BookMethods {
         newBook.setIsbn(scanner.nextLine());
         System.out.println("Enter number of pages: ");
         enterNumberOfPages();
-        System.out.println("Enter rating (from 1 to 5; zero if not read;\nType correct score + ENTER twice, please): ");
+        System.out.println("Enter rating (from 1 to 5; zero if not read): ");
         boolean validator = false;
         while (!validator) {
             validator = checkEnteredReadersBookScore();
         }
-        System.out.println("Enter year the book was published (type year + ENTER twice, please.): ");
-        enterYearBookWasPublished();
-        scanner.nextLine();
+        System.out.println("Enter year the book was published: ");
+        boolean validatorSecond = false;
+        while (!validatorSecond) {
+            validatorSecond = enterYearBookWasPublished();
+        }
         System.out.println("Enter genre: ");
         newBook.setGenre(scanner.nextLine());
         System.out.println("Did you read the book (yes/ no): ");
@@ -37,7 +39,7 @@ public class BookMethods {
             newBook.setNumberOfPages(scanner.nextInt());
             scanner.nextLine();
         } else {
-            System.out.println("You entered incorrect value. It will be saved zero.\nAfter information is saved, choose to change information about book.");
+            System.out.println("You entered incorrect value. Please try again.");
             scanner.nextLine();
         }
     }
@@ -45,27 +47,30 @@ public class BookMethods {
     private static boolean checkEnteredReadersBookScore() {
         if (scanner.hasNextInt()) {
             int enteredReadersScore = scanner.nextInt();
-//            scanner.nextLine();
+            scanner.nextLine();
             if (enteredReadersScore < 0 || enteredReadersScore > 5) {
-                System.out.println("Please enter score from 1 to 5; zero if book is not read.\nType correct score twice, please.");
+                System.out.println("Please enter score from 1 to 5; zero if book is not read.");
                 return false;
+            } else {
+                newBook.setReadersBookScore(enteredReadersScore);
+                return true;
             }
-            newBook.setReadersBookScore(scanner.nextInt());
-            return true;
         } else {
-            System.out.println("You entered incorrect value.\nPlease enter score from 1 to 5; zero if book is not read.\nType correct score + ENTER twice, please.");
+            System.out.println("You entered incorrect value.\nPlease enter score from 1 to 5; zero if book is not read.");
             scanner.nextLine();
             return false;
         }
     }
 
-    private static void enterYearBookWasPublished() {
+    private static boolean enterYearBookWasPublished() {
         if (scanner.hasNextInt()) {
             newBook.setYearBookWasPublished(scanner.nextInt());
             scanner.nextLine();
+            return true;
         } else {
-            System.out.println("You entered incorrect value. It will be saved zero.\nAfter information is saved, choose to change information about book.");
+            System.out.println("You entered incorrect value. Please try again.");
             scanner.nextLine();
+            return false;
         }
     }
 

@@ -4,40 +4,23 @@ import java.util.Scanner;
 
 public class BookHouseMain {
     private static DBConnection bookHouse;
-    private static Owner currentUser;
 
     public static void main(String[] args) {
         bookHouse = new DBConnection();
-        currentUser = new Owner();
         int menuEntry;
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Welcome!");
+        System.out.println("\nWelcome!");
 
         do {
-            System.out.println("Please select what to do:");
-//            System.out.println("0 - Login");
-            System.out.println("1 - Add a new book");
-            System.out.println("2 - See information about all Your books");
-            System.out.println("3 - Find book by: Name (type A), Author (type B), Genre (type C), Rating (type D), ID (type E)");
-            System.out.println("4 - Check how many books have been read");
-            System.out.println("5 - Delete book entry from Your library");
-            System.out.println("99 - Exit");
+            System.out.println("\nPlease select what to do:\n" +
+                    "1 - Add a new book\n2 - See information about all Your books\n" +
+                    "3 - Find book by Name, Author, Genre, Rating, ID\n" +
+                    "4 - Check how many books have been read\n5 - Update book's information\n" +
+                    "6 - Delete book entry from Your library\n99 - Exit");
             menuEntry = scanner.nextInt();
             Book newBook = new Book();
 
             switch (menuEntry) {
-//                case 0:
-//                    System.out.println("Please enter your nickname: ");
-//                    String userInputNickname = scanner.nextLine();
-//                    if (currentUser.getOwnerNickname().equals(userInputNickname) || currentUser.getOwnerNickname().equals(null)) {
-//                        currentUser = currentUser;
-//                        System.out.println("Login is successful.");
-//                    } else {
-//                        System.out.println("Please register.");
-//                        currentUser = Owner.insertInformationOwner();
-//                        System.out.println("The owner is saved.\n");
-//                    }
-//                    break;
                 case 1:
                     newBook = BookMethods.insertInformationAboutBook();
                     bookHouse.addBook(newBook);
@@ -53,46 +36,51 @@ public class BookHouseMain {
                     bookHouse.getBooksReadCounter(newBook);
                     break;
                 case 5:
-                    System.out.println("Enter ID of book you want to delete: ");
+                    bookHouse.getBooks(newBook);
+                    System.out.println("\nPlease enter book's ID:");
+                    int bookId = scanner.nextInt();
+                    bookHouse.updateBook(bookId);
+                    break;
+                case 6:
+                    System.out.println("Enter ID of book you want to delete:");
                     bookHouse.findBookByIdAndDelete(scanner.next());
                     break;
                 case 99:
                     System.out.println("The program is closed! Thank you and see you soon!");
                     break;
                 default:
-                    System.out.println("Menu item does not exist.");
+                    System.out.println("Menu item does not exist.\n");
             }
         } while (menuEntry != 99);
     }
 
     private static void findBookByOneOfParameters() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("To find book by title press A");
-        System.out.println("To find book by author press B");
-        System.out.println("To find book by genre press C");
-        System.out.println("To find book by rating press D");
-        System.out.println("To find book by ID press E");
-        switch (scanner.next()) {
-            case "A":
+        System.out.println("To find book:\n- by title press 1\n- by author press 2" +
+                "\n- by genre press 3\n- by rating press 4\n- by ID press 5");
+        switch (scanner.nextInt()) {
+            case 1:
                 System.out.println("Enter the title of the book you want to find: ");
                 bookHouse.findBookByTitle(scanner.next());
                 break;
-            case "B":
+            case 2:
                 System.out.println("Enter the name of the author you want to find: ");
                 bookHouse.findBookByAuthor(scanner.next());
                 break;
-            case "C":
+            case 3:
                 System.out.println("Enter the genre of the books you want to find: ");
                 bookHouse.findBookByGenre(scanner.next());
                 break;
-            case "D":
+            case 4:
                 System.out.println("Enter the rating of the books you want to find: ");
                 bookHouse.findBookByRating(scanner.next());
                 break;
-            case "E":
+            case 5:
                 System.out.println("Enter the index of the book you want to find: ");
                 bookHouse.findBookById(scanner.next());
                 break;
+            default:
+                System.out.println("Menu item does not exist.");
         }
     }
 }
