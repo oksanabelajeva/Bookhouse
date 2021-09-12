@@ -9,7 +9,7 @@ public class BookHouseMain {
         bookHouse = new DBConnection();
         int menuEntry;
         Scanner scanner = new Scanner(System.in);
-        System.out.println("\nWelcome!");
+        System.out.println("\nWelcome in the Book House!");
 
         do {
             System.out.println("\nPlease select what to do:\n" +

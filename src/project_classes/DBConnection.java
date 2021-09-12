@@ -89,12 +89,13 @@ public class DBConnection {
             String sqlStatement = "SELECT book_title, author_name, author_surname " +
                     "FROM books WHERE book_title LIKE '%" + bookTitle + "%';";
             ResultSet res = statement.executeQuery(sqlStatement);
-            if (res.next()) {
+//            if (rs.next() == false){
+//                System.out.println("Sorry, no such book in BookHouse.\n");
+//            }
+            while (res.next()) {
                 System.out.println("The book was found.\nTitle: " + res.getString("book_title") +
                         ", author name: " + res.getString("author_name") +
                         ", author surname: " + res.getString("author_surname"));
-            } else {
-                System.out.println("Sorry, no such book in BookHouse.");
             }
         } catch (SQLException exception) {
             System.out.println("Error getting list of books: " + exception);
@@ -107,12 +108,13 @@ public class DBConnection {
             String sqlStatement = "SELECT book_title, author_name, author_surname " +
                     "FROM books WHERE author_name LIKE '%" + authorName + "%';";
             ResultSet res = statement.executeQuery(sqlStatement);
-            if (res.next()) {
+//            if (rs.next() == false){
+//                System.out.println("Sorry, no such book in BookHouse.\n");
+//            }
+            while (res.next()) {
                 System.out.println("The book was found.\nTitle: " + res.getString("book_title") +
                         ", author name: " + res.getString("author_name") +
                         ", author surname: " + res.getString("author_surname"));
-            } else {
-                System.out.println("Sorry, no such book in BookHouse.");
             }
         } catch (SQLException exception) {
             System.out.println("Error getting list of books: " + exception);
@@ -125,13 +127,14 @@ public class DBConnection {
             String sqlStatement = "SELECT book_title, author_name, author_surname, genre " +
                     "FROM books WHERE genre LIKE '%" + genre + "%';";
             ResultSet res = statement.executeQuery(sqlStatement);
-            if (res.next()) {
+//            if (rs.next() == false){
+//                System.out.println("Sorry, no such book in BookHouse.\n");
+//            }
+            while (res.next()) {
                 System.out.println("The book was found.\nTitle: " + res.getString("book_title") +
                         ", author name: " + res.getString("author_name") +
                         ", author surname: " + res.getString("author_surname") +
                         ", genre: " + res.getString("genre"));
-            } else {
-                System.out.println("Sorry, no such book in BookHouse.");
             }
         } catch (SQLException exception) {
             System.out.println("Error getting list of books: " + exception);
@@ -144,16 +147,17 @@ public class DBConnection {
             String sqlStatement = "SELECT book_title, author_name, author_surname, genre, readers_book_score " +
                     "FROM books WHERE readers_book_score = '" + readersBookScore + "';";
             ResultSet res = statement.executeQuery(sqlStatement);
+//            if (rs.next() == false){
+//                System.out.println("Sorry, no such book in BookHouse.\n");
+//            }
             while (res.next()) {
                 System.out.println("The book was found.\nTitle: " + res.getString("book_title") +
                         ", author name: " + res.getString("author_name") +
                         ", author surname: " + res.getString("author_surname") +
                         ", genre: " + res.getString("genre") +
                         ", reader's book score: " + res.getInt("readers_book_score"));
+
             }
-//            else {
-//                System.out.println("Sorry, no such book in BookHouse.");
-//            }
         } catch (SQLException exception) {
             System.out.println("Error getting list of books: " + exception);
         }
